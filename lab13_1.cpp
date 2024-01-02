@@ -17,3 +17,23 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double datas[], int N, double stats[]){
+    double aSum = 0, sSum = 0, prod = 1, hSum = 0, minVal = __DBL_MAX__, maxVal = 0;
+    for(int i = 0; i < N; i++){
+        double data = datas[i];
+        aSum += data;
+        sSum += data * data;
+        prod *= data;
+        hSum += 1/data;
+        minVal = min(minVal, data);
+        maxVal = max(maxVal, data);
+    }
+
+    stats[0] = aSum / N;
+    stats[1] = sqrt(sSum / N - stats[0] * stats[0]);
+    stats[2] = pow(prod, 1.0 / N);
+    stats[3] = N / hSum;
+    stats[4] = maxVal;
+    stats[5] = minVal;
+}
